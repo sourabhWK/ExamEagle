@@ -1,0 +1,21 @@
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+//@import 'bootstrap-custom';
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+    main {
+      flex: 1 0 auto;
+      background-color: #e3f2fd;
+    }
+  
+  .navbar {
+      
+      font-size: 20px;
+      padding: 5px;
+      margin-top: 0vh;
+  }
+  
