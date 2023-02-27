@@ -26,10 +26,19 @@
         <li class="nav-item">
           <a class="nav-link disabled active text-white">Disabled</a>
         </li>
+       
       </ul>
       <form class="d-flex" role="search">
+       <% if user_signed_in? %>      
+        <%= link_to "Log Out" , destroy_user_session_path(@user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger me-2"  %> </a>
+         
+      <%else%>    
+        <%= link_to "Sign up",  new_user_registration_path(@user), class: "btn btn-success me-2" %>
+        <%= link_to "Log in",  new_user_session_path(@user), class: "btn btn-success me-2" %>
+      <%end%>
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
+        
       </form>
     </div>
   </div>
