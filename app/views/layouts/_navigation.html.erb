@@ -1,45 +1,70 @@
 <nav class="navbar navbar-expand-lg  " style="background-color: #3f3860;">
   <div class="container-fluid">
-    <a class="navbar-brand active text-white" href="#">Navbar</a>
-    <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" <%= link_to "Home", root_path %></a>
+          <a class="nav-link active text-white" aria-current="page" <%= link_to "Home", root_path %> </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active text-white" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled active text-white">Disabled</a>
-        </li>
-       
+
+        <% if user_signed_in? %> 
+
+          <a class="nav-link active text-white" href="#">Profile</a>
+          <a class="nav-link active text-white" href="#">Hi <%= current_user.role %></a>
+          
+          <% if current_user.role.eql? "user" %> 
+
+            <li class="nav-item">
+              <a class="nav-link active text-white" href="#">Start Test</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active text-white" href="#">Past Test</a>
+            </li>
+
+          <% elsif current_user.role.eql? "admin" %> 
+            
+            <li class="nav-item">
+              <a class="nav-link active text-white" href="#">Create Test</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active text-white" href="#">View Users</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active text-white" href="#">Update Questions</a>
+            </li>
+
+          <%end%>
+
+        <%else%>
+
+          <li class="nav-item">
+            <a class="nav-link active text-white" href="#">Start Test</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active text-white" href="#">Contact us</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active text-white" href="#">About us</a>
+          </li>
+
+        <%end%>
+
       </ul>
-      <form class="d-flex" role="search">
-       <% if user_signed_in? %>      
+      
+      <% if user_signed_in? %>      
         <%= link_to "Log Out" , destroy_user_session_path(@user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger me-2"  %> </a>
-         
+        
       <%else%>    
         <%= link_to "Sign up",  new_user_registration_path(@user), class: "btn btn-success me-2" %>
         <%= link_to "Log in",  new_user_session_path(@user), class: "btn btn-success me-2" %>
       <%end%>
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-        
-      </form>
+      
     </div>
   </div>
 </nav>
