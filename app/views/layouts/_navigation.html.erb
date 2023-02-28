@@ -10,10 +10,13 @@
 
         <% if user_signed_in? %> 
 
-          <a class="nav-link active text-white" href="#">Profile</a>
-          <a class="nav-link active text-white" href="#">Hi <%= current_user.role %></a>
+          <a class="nav-link active text-white" href="#"><%= current_user.role.upcase %></a>
           
           <% if current_user.role.eql? "user" %> 
+
+            <li class="nav-item">
+              <a class="nav-link active text-white" href="#">Profile</a>
+            </li>
 
             <li class="nav-item">
               <a class="nav-link active text-white" href="#">Start Test</a>
@@ -26,15 +29,15 @@
           <% elsif current_user.role.eql? "admin" %> 
             
             <li class="nav-item">
-              <a class="nav-link active text-white" href="#">Create Test</a>
-            </li>
-
-            <li class="nav-item">
               <a class="nav-link active text-white" href="#">View Users</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link active text-white" href="#">Update Questions</a>
+              <a class="nav-link active text-white" href="#">Create Test</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active text-white" <%= link_to "Questions", questions_path %></a>
             </li>
 
           <%end%>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'option/index'
+  get 'option/show'
+  get 'option/create'
+  get 'option/new'
+  get 'option/destroy'
   devise_for :users
   root "home#index"
   resources :questions
