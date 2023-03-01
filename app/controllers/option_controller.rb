@@ -1,7 +1,5 @@
 class OptionController < ApplicationController
-  def index
-  end
-
+  
   def show
   end
 
