@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  get 'option/index'
+  get 'option/show'
+  get 'option/create'
+  get 'option/new'
+  get 'option/destroy'
   devise_for :users
+
 
   # post '/questions/:id/answers/new', to: 'answers#create'
 
@@ -9,6 +15,10 @@ Rails.application.routes.draw do
   resources :questions do 
     resources :answers
   end
+
+
+  root "home#index"
+  resources :questions
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  percent: 1
+  attempted: 2023-03-01
+  pass: false
+
+two:
+  percent: 1
+  attempted: 2023-03-01
+  pass: false
