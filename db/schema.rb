@@ -18,7 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_175630) do
     t.boolean "correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
+  end
+end
 ActiveRecord::Schema[7.0].define(version: 2023_03_01_144705) do
   create_table "languages", force: :cascade do |t|
     t.string "name"
