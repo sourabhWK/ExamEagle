@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  get 'option/index'
-  get 'option/show'
-  get 'option/create'
-  get 'option/new'
-  get 'option/destroy'
+  get 'user', to: 'user#index'
+  get 'admin', to: 'admin#index'
   devise_for :users
 
 
