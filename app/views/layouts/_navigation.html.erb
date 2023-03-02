@@ -9,10 +9,11 @@
         </li>
 
         <% if user_signed_in? %> 
-
           <a class="nav-link active text-white" href="#"><%= current_user.role.upcase %></a>
           
           <% if current_user.role.eql? "user" %> 
+
+            
 
             <li class="nav-item">
               <a class="nav-link active text-white" href="#">Profile</a>
