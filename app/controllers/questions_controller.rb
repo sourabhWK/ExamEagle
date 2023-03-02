@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:q_level,:q_type,:quest,:language)
+    params.require(:question).permit(:text,:type,:difficulty)
   end
 
 
