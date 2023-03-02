@@ -10,8 +10,8 @@
   
     <div class="card-body ">
     <div class="container d-flex justify-content-between pe-2 ">
-       <h5 class="card-title"><b>Question :-  <%= question.id %>. </b><%= question.quest %></h5>
-       <p>Language:-<%= question.language%><br>Level:-<%= question.q_level%><br>Type:-<%= question.q_type%></p>
+       <h5 class="card-title"><b>Question :-  <%= question.id %>. </b><%= question.text %></h5>
+       <%# <p>Language:-<%= question.language<br>Level:-<%= question.q_level<br>Type:-<%= question.q_type%></p> 
     </div>
       <%= link_to "see options", question_answers_path(question) %>
        <% question.answers.each do |answer| %>
