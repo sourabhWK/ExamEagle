@@ -2,10 +2,13 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.all
+    
+    @answers=Answer.all
   end
 
   def new
     @question = Question.new
+    
   end
 
   def create 
