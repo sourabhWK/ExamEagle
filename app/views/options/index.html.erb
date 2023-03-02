@@ -4,7 +4,7 @@
 
 
   <div class="card m-2 " style="width: 80rem;">
-    <%= link_to "Add Answer", new_question_answer_path(question) %>
+    <%= link_to "Add Answer", new_question_option_path(question) %>
 
   
   
@@ -13,14 +13,14 @@
        <h5 class="card-title"><b>Question :-  <%= question.id %>. </b><%= question.text %></h5>
        <%# <p>Language:-<%= question.language<br>Level:-<%= question.q_level<br>Type:-<%= question.q_type%></p> 
     </div>
-      <%= link_to "see options", question_answers_path(question) %>
-       <% question.answers.each do |answer| %>
+      
+       <% question.options.each do |option| %>
           <ul>
-            <li><%=  radio_button 'answer', 'ans', answer.ans %> <%=answer.ans%>
+            <li><%=  radio_button 'option', 'ans', option.text %> <%=option.text%>
 
            
           
-             <% if answer.correct ==  true %>
+             <% if option.correct ==  true %>
                 <%# radio button with value "my_value" has been selected %>
                  "Correct Answer"
              <% else %>

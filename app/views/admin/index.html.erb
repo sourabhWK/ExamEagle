@@ -1,4 +1,4 @@
-admin dashboard
+<h5 style="text-align:center;">admin dashboard</h5>
 <br>
 
 <table>
@@ -6,29 +6,16 @@ admin dashboard
     <th>Name</th>
     <th>Email</th>
     <th>Last signed in</th>
+    <th>Sign In Attempt</th>
   </tr>
   <% @user.each do |user| %>
     <tr>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.last_sign_in_at %></td>
+      <td><%= user.sign_in_count %></td>
     </tr>
   <% end %>
 </table>
 
 <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}

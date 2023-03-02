@@ -1,0 +1,29 @@
+<div class="container">
+<h1 style="text-align:center;color:white;background-color:red">New Test Questions</h1>
+  <div class="card m-2 " style="width: 80rem;">
+    <div class="card-body ">
+
+      <%= form_with model: @test_question do |f| %>
+        <div class="container-sm">
+          <div class="row mb-3 mt-5">
+            <strong><%= f.label :enter_question %></strong>
+            <%= f.text_field :text, placeholder: "Enter Question", autofocus: true %>
+          </div>
+
+          
+
+          <%= form_with model: @topic do |f| %>
+            <div class="row mb-3 mt-5">
+              <strong><%= f.label :select_topic_of_question %></strong>
+              <%= f.text_field :name, placeholder: "topic", autofocus: true %>
+            </div>
+          <%end%>
+
+          <%= f.submit "submit", class:"btn btn-success mt-3" %>
+        </div>
+
+      <%end%>
+    </div>
+  </div>
+
+</div>
