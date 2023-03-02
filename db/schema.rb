@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_01_144705) do
-  create_table "answers", force: :cascade do |t|
-    t.string "ans"
-    t.integer "question_id"
-    t.boolean "correct"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2023_03_02_154615) do
   create_table "languages", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -54,6 +46,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_144705) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_results_on_user_id"
+  end
+
+  create_table "test_questions", force: :cascade do |t|
+    t.string "text"
+    t.integer "language_id"
+    t.integer "topic_id"
+    t.integer "type"
+    t.integer "difficulty"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["language_id"], name: "index_test_questions_on_language_id"
+    t.index ["topic_id"], name: "index_test_questions_on_topic_id"
   end
 
   create_table "topics", force: :cascade do |t|

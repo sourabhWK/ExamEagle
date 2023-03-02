@@ -1,4 +1,4 @@
-class AnswersController < ApplicationController
+class OptionsController < ApplicationController
 
   def new
     @question = Question.find(params[:question_id])
@@ -7,13 +7,13 @@ class AnswersController < ApplicationController
   def index
     @questions = Question.all
     @q=Question.find(params[:question_id])
-    @answers=@q.answers
+    @answers=@q.options
   end
 
   def create
     question = Question.find(params[:question_id])
-    @answer = question.answers.create(answer_params)
-    if @answer.save
+    @option = question.options.create(answer_params)
+    if @option.save
       redirect_to questions_path
     else
       render 'new'
@@ -23,6 +23,6 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:ans,:correct)
+    params.require(:option).permit(:text,:correct)
   end
 end
