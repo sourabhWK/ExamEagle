@@ -1,0 +1,23 @@
+<h1 style="text-align:center">ALL Question and Answer</h1><hr>
+<div class="container">
+<% @questions.each do |question| %>
+
+
+  <div class="card m-2 " style="width: 80rem;">
+    <%= link_to "Add Answer", new_question_answer_path(question) %>
+
+  
+  
+    <div class="card-body ">
+    <div class="container d-flex justify-content-between pe-2 ">
+       <h5 class="card-title"><b>Question :-  <%= question.id %>. </b><%= question.quest %></h5>
+       <p>Language:-<%= question.language%><br>Level:-<%= question.q_level%><br>Type:-<%= question.q_type%></p>
+    </div>
+    <%= link_to "see options", question_answers_path(question) %>
+     
+
+    </div>
+  </div>
+
+<% end %>
+</div>

@@ -5,35 +5,32 @@
     
   
     <div class="row mb-3 mt-5">
-    
-    
       <strong><%= f.label :enter_question %></strong>
       <%= f.text_field :quest, placeholder: "Enter Question", autofocus: true %>
-      
     </div>
 
 
     <div class="container d-flex me-5">
       <div class="form-group me-5">
         <strong><%= f.label :choose_language %></strong>
-        <%= f.select :option, options_for_select([["C", 0], ["C++", 1], ["Java", 2]]) %>
+        <%= f.select :language, options_for_select([["C", "C"], ["C++", "C++"], ["Java", "Java"]]) %>
       </div>
 
       <div class="form-group me-5">
         <strong><%= f.label :question_level %></strong>
-        <%= f.select :q_level, options_for_select([["easy", 0], ["medium", 1], ["hard", 2]]) %>
+        <%= f.select :q_level, options_for_select([["easy", "easy"], ["medium", "medium"], ["hard", "hard"]]) %>
       </div>
 
       <div class="form-group me-5">
         <strong><%= f.label :question_type %></strong>
-        <%= f.select :q_type, options_for_select([["MCQ", 0], ["SATQ", 1], ["LATQ", 2]]) %>
+        <%= f.select :q_type, options_for_select([["MCQ", "MCQ"], ["SATQ", "SATQ"], ["LATQ", "LATQ"]]) %>
       </div>
     </div>
-    
 
-    
-    
- 
+    <%# <div class="class">
+      <%= link_to "Add Answer", new_question_answer_path %>
+    </div> %>
+
   <%= f.submit "submit", class:"btn btn-success mt-3" %>
   </div>
 
