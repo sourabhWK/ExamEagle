@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  skip_before_action :configure_permitted_parameters, if: :devise_controller?
+  # skip_before_action :configure_permitted_parameters, if: :devise_controller?
 
   def index
     if user_signed_in?
