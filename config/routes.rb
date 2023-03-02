@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
-<<<<<<< HEAD
-  root 'home#index'
-=======
+
+  # post '/questions/:id/answers/new', to: 'answers#create'
+
+
   root "home#index"
-  resources :questions
->>>>>>> 0fe9c2a (added question table)
+
+  resources :questions do 
+    resources :answers
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
