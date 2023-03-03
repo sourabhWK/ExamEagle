@@ -1,9 +1,9 @@
-<%= form_with model: [ @question, @question.answers.build ] do |f| %>
+<%= form_with model: [ @question, @question.options.build ] do |f| %>
 
   <div class="container-sm">  
     <div class="row mb-3 mt-5">
       <strong><%= f.label :enter_answer %></strong>
-      <%= f.text_field :ans, placeholder: "Enter Question", autofocus: true %>
+      <%= f.text_field :text, placeholder: "Enter Question" %>
     </div>
 
       <strong>Correct Answer</strong>

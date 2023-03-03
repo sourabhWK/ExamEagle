@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :questions do 
-    resources :answers
+    resources :options
   end
 
+  resources :test_questions
+  resources :topic
 end
