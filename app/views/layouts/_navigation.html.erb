@@ -5,20 +5,13 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" <%= link_to "Home", root_path %> </a>
+          <%= link_to "Home", root_path, class:"nav-link active text-white" %>
         </li>
 
         <% if user_signed_in? %> 
 
 
-          
-
-          <a class="nav-link active text-white" href="#"><%= current_user.role.upcase %></a>
-
-          
           <% if current_user.role.eql? "user" %> 
-
-            
 
             <li class="nav-item">
               <a class="nav-link active text-white" href="#">Profile</a>
@@ -29,33 +22,29 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link active text-white" href="#">Past Test</a>
+              <a class="nav-link active text-white" href="#">Past <%= link_to "Update",  edit_user_registration_path, class: "btn btn-success me-2" %>Test</a>
             </li>
 
           <% elsif current_user.role.eql? "admin" %> 
+
+            <li class="nav-item dropdown">
+              <a class="nav-link text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                
+                <span> <%= current_user.role.upcase  %> </span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%=link_to "Update Profile", edit_user_registration_path, class: "nav-link active text-black" %></li>
+                <li><%=link_to "Create Test", root_path, class: "nav-link active text-black" %></li>
+                <li><%= link_to "Create Practice Question", new_question_path, class: "nav-link active text-black" %></li>
+              </ul>
+            </li>
             
             <li class="nav-item">
               <a class="nav-link active text-white" href="#">View Users</a>
             </li>
 
-            
-
             <li class="nav-item">
-              <a class="nav-link active text-white" <%= link_to "Practice Questions", questions_path %></a>
-            </li>
-
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  
-                  <span class="badge bg-success"> <%= current_user.role  %> </span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link active text-black" aria-current="page" <%=link_to "My Profile" %></a></li>
-                  <li><a class="nav-link active text-black" aria-current="page" <%=link_to "Create Test" %></a></li>
-                  <li><a class="nav-link active text-black" aria-current="page" <%= link_to "Create Practice Question", new_question_path %></a></li>
-                </ul>
-              
-            
+              <%= link_to "Practice Questions", questions_path, class:"nav-link active text-white" %>
             </li>
 
           <%end%>
@@ -79,7 +68,7 @@
       </ul>
       
       <% if user_signed_in? %>      
-        <%= link_to "Log Out" , destroy_user_session_path(@user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger me-2"  %> </a>
+        <a><%= link_to "Log Out" , destroy_user_session_path(@user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger me-2"  %> </a>
         
       <%else%>    
         <%= link_to "Sign up",  new_user_registration_path(@user), class: "btn btn-success me-2" %>
