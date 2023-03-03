@@ -1,20 +1,9 @@
 <h1 style="text-align:center;color:white;background-color:red">Enter Question Detail</h1>
 
 <%= form_with model: @question do |f| %>
-    <div class="container-sm">
-    
+  <div class="container-sm">
   
-    <div class="row mb-3 mt-5">
-      <strong><%= f.label :enter_question %></strong>
-      <%= f.text_field :quest, placeholder: "Enter Question", autofocus: true %>
-    </div>
-
-
     <div class="container d-flex me-5">
-      <div class="form-group me-5">
-        <strong><%= f.label :choose_language %></strong>
-        <%= f.select :language, options_for_select([["C", "C"], ["C++", "C++"], ["Java", "Java"]]) %>
-      </div>
 
       <div class="form-group me-5">
         <strong><%= f.label :question_level %></strong>
@@ -25,14 +14,29 @@
         <strong><%= f.label :question_type %></strong>
         <%= f.select :q_type, options_for_select([["MCQ", "MCQ"], ["SATQ", "SATQ"], ["LATQ", "LATQ"]]) %>
       </div>
+
+      <div class="form-group me-5">
+        <strong><%= f.label :choose_language %></strong>
+        <%= f.select :language, options_for_select([["C", "C"], ["C++", "C++"], ["Java", "Java"]]) %>
+      </div>
+
+      <div class="form-group me-5">
+        <strong><%= f.label :choose_topic %></strong>
+        <%= f.select :topic, options_for_select([["C", "C"], ["C++", "C++"], ["Java", "Java"]]) %>
+      </div>
+
+    </div>
+
+    <div class="row mb-3 mt-5">
+      <strong><%= f.label :enter_question %></strong>
+      <%= f.text_field :quest, placeholder: "Enter Question", autofocus: true %>
     </div>
 
     <%# <div class="class">
       <%= link_to "Add Answer", new_question_answer_path %>
     <%# </div> %> 
 
-  <%= f.submit "submit", class:"btn btn-success mt-3" %>
+    <%= f.submit "submit", class:"btn btn-success mt-3" %>
   </div>
 
 <%end%>
-
