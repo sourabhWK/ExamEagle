@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'user', to: 'user#index'
-  get 'admin', to: 'admin#index'
+  resources :admin, only: [:index, :show]
   devise_for :users
 
   root "home#index"
