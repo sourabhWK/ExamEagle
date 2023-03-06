@@ -13,8 +13,14 @@
 
           <% if current_user.role.eql? "user" %> 
 
-            <li class="nav-item">
-              <a class="nav-link active text-white" href="#">Profile</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                
+                <span> <%= current_user.role.upcase  %> </span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%=link_to "Update Profile", edit_user_registration_path, class: "nav-link active text-black" %></li>
+              </ul>
             </li>
 
             <li class="nav-item">
@@ -22,7 +28,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link active text-white" href="#">Past <%= link_to "Update",  edit_user_registration_path, class: "btn btn-success me-2" %>Test</a>
+              <a class="nav-link active text-white" href="#">Past Test</a>
             </li>
 
           <% elsif current_user.role.eql? "admin" %> 
