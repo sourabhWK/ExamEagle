@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     resources :options
   end
 
-  resources :test_questions
-  resources :topic
+  resources :test_questions 
+
+  resources :languages do
+    post 'create_ajax', on: :collection
+  end
+
+
 end
