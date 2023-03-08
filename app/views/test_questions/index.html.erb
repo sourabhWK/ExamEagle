@@ -1,0 +1,84 @@
+<h1 style="text-align:center">All The Test with their Details</h1><hr/>
+<div class="container">
+
+  <% @test_questions.each do |question| %>
+    <div class="card mb-3" style="max-width: 1200px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <%= image_tag question.image, :size=>"400x540" if question.image.attached? %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><b>Description :-  </b><%= question.description %></h5><br>
+             
+              <strong><h5 class="card-title text-align:center">Test Details</h5></strong>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Contents</th>
+                    <th scope="col">Detail</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Language</td>
+                    <td><%= question.language&.name  %></td>
+                   
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Topic</td>
+                    <td><%= question.topic&.name || "Unknown"%></td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Difficulty Level</td>
+                    <td><%= question.difficulty %></</td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>Type Of Question</td>
+                    <td><%= question.question_type %></</td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">5</th>
+                    <td>No of Question</td>
+                    <td><%= question.no_of_question %></</td>
+                    
+                  </tr>
+                   <tr>
+                    <th scope="row">6</th>
+                    <td>Full Marks</td>
+                    <td><%= question.full_marks %></</td>
+                    
+                  </tr>
+                   <tr>
+                    <th scope="row">7</th>
+                    <td>Passing Marks</td>
+                    <td><%= question.passing_marks %></</td>
+                    
+                  </tr>
+                 
+                </tbody>
+              </table>
+              <% if current_user.role.eql? "admin" %>
+                <%= link_to 'Edit Test Detail', edit_test_question_path(question), class: "btn btn-warning" %>
+                <%= link_to "Delete Test", test_question_path(question), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } ,class: "btn btn-danger "%>
+              
+
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+  <%end%>
+</div>
+
+
+
