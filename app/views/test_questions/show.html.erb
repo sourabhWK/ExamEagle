@@ -1,0 +1,101 @@
+<h1 style="text-align:center;color:green"> Test with their Details</h1><hr/>
+<div class="card mb-3 ms-5" style="max-width: 1700px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <%= image_tag @test_question.image, :size=>"500x540" if @test_question.image.attached? %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title" style="color:green;"><b>Description :-  </b><%= @test_question.description %></h5><br>         
+        <strong><h5 class="card-title text-align:center">Test Details</h5></strong>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Contents</th>
+              <th scope="col">Detail</th>                  
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Language</td>
+              <td><%= @test_question.language&.name || "Not Any Language Specified" %></td>                  
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Topic</td>
+              <td><%= @test_question.topic&.name || "Not Any Topic Specified"%></td>                  
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Difficulty Level</td>
+              <td><%= @test_question.difficulty %></</td>                   
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Type Of Question</td>
+              <td><%= @test_question.question_type %></</td>                  
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>No of Question</td>
+              <td><%= @test_question.no_of_question %></</td>                   
+            </tr>
+              <tr>
+              <th scope="row">6</th>
+              <td>Full Marks</td>
+              <td><%= @test_question.full_marks %></</td>                   
+            </tr>
+              <tr>
+              <th scope="row">7</th>
+              <td>Passing Marks</td>
+              <td><%= @test_question.passing_marks %></</td>                   
+            </tr>                
+          </tbody>
+        </table>
+       <h5 style="color:blue;">** Please scroll down to see the test link of <%= @test_question.language&.name%>. **</h5>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h3 style="text-align:center;color:red ; ">*** Read More informations. </h3>
+</div>
+<div class="card mb-3 ms-5" style="max-width: 1700px;">
+  <div class="container">
+    <div class="row g-0">
+      <div class="col-md-4 mt-5">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1"> 
+            <h6>Rules</h6><br>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1"> 
+            <h6>What we get</h6><br>
+          </label> 
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <%= render "test_questions/rules"%>
+          <%= render "test_questions/what_we_get"%>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+    <label class="form-check-label" for="defaultCheck1">
+      <p>I have read all the rules and regulation of this test and wants to give the test so that I can enhance my knowledge.</p>
+    </label>
+  </div>
+  <h2 ><%= link_to "Start Test", start_test_path , class: "btn btn-outline-success btn-lg d-grid gap-2 col-6 mx-auto"%></h2>
+</div>

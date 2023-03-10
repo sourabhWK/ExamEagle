@@ -6,6 +6,7 @@ import "controllers"
 
 
 
+
 $(document).ready(function() {
   $('#new_language').on('submit', function(event) {
     event.preventDefault();
