@@ -77,7 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_143439) do
   end
 
   create_table "test_questions", force: :cascade do |t|
-    t.string "text"
     t.integer "language_id"
     t.integer "topic_id"
     t.integer "question_type"

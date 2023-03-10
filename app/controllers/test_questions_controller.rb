@@ -9,6 +9,10 @@ class TestQuestionsController < ApplicationController
       @test_question = TestQuestion.new
   end
 
+  def show
+    @test_question = TestQuestion.find(params[:id])
+  end
+
   def create 
       
       @test_question = TestQuestion.create(question_params)
@@ -42,6 +46,10 @@ class TestQuestionsController < ApplicationController
   @test_question = TestQuestion.find(params[:id])
   @test_question.destroy
   redirect_to test_questions_path(@test_question)
+ end
+
+ def start_test
+  @test_question = TestQuestion.find(params[:id])
  end
     
 
