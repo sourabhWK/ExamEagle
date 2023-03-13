@@ -7,12 +7,13 @@ class OptionsController < ApplicationController
   def index
     @questions = Question.all
     @q=Question.find(params[:question_id])
-    @answers=@q.options
+    @options=@q.options
   end
 
   def create
     question = Question.find(params[:question_id])
     @option = question.options.create(answer_params)
+    
     if @option.save
       redirect_to questions_path
     else

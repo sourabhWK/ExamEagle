@@ -2,7 +2,7 @@ class TestQuestion < ApplicationRecord
   has_one_attached :image
   belongs_to :language, dependent: :destroy
   belongs_to :topic, dependent: :destroy
-  has_many :options
+  has_many :question_parts
 
   validates :description, presence: true
 

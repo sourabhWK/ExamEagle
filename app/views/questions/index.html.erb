@@ -4,16 +4,21 @@
 
 
   <div class="card m-2 " style="width: 80rem;">
-    <%= link_to "Add Answer", new_question_option_path(question) %>
-
+  <% if current_user.role.eql? "admin" %>
+    <div class="container d-flex mt-2">
+      <%= link_to "Add Answer", new_question_option_path(question),class: "btn btn-primary " %>
+      <%= link_to "Edit Question", edit_question_path(question),class: "btn btn-warning ms-2" %>
+      <%= link_to "Delete Question", question_path(question), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } ,class: "btn btn-danger ms-2" %>
+    </div>
+  <%end%>
   
   
     <div class="card-body ">
     <div class="container d-flex justify-content-between pe-2 ">
        <h5 class="card-title"><b>Question :-  <%= question.id %>. </b><%= question.text %></h5>
-       <%# <p>Language:-<%= question.language<br>Level:-<%= question.q_level<br>Type:-<%= question.q_type%></p>  
+       <p>Language:-<%= question.language&.name %><br>Topic:-<%= question.topic&.name %><br>Type:-<%= question.question_type %></p>  
     </div>
-    <%= link_to "see options", question_options_path(question) %>
+    <%= link_to "see options", question_options_path(question), class: "btn btn-success" %>
      
 
     </div>

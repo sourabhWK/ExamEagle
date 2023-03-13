@@ -1,4 +1,5 @@
 class TestQuestionsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @test_questions = TestQuestion.all

@@ -4,14 +4,19 @@
 
 
   <div class="card m-2 " style="width: 80rem;">
-    <%= link_to "Add Answer", new_question_option_path(question) %>
+
+  <% if current_user.role.eql? "admin" %>
+  <div class="container d-flex">
+    <%= link_to "Add Answer", new_question_option_path(question), class: "btn btn-primary mt-2"%>
+  </div>
+  <%end%>
 
   
   
     <div class="card-body ">
     <div class="container d-flex justify-content-between pe-2 ">
        <h5 class="card-title"><b>Question :-  <%= question.id %>. </b><%= question.text %></h5>
-       <%# <p>Language:-<%= question.language<br>Level:-<%= question.q_level<br>Type:-<%= question.q_type%></p> 
+       <p>Language:-<%= question.language&.name %><br>Topic:-<%= question.topic&.name %><br>Type:-<%= question.question_type %></p> 
     </div>
       
        <% question.options.each do |option| %>
@@ -22,14 +27,14 @@
           
              <% if option.correct ==  true %>
                 <%# radio button with value "my_value" has been selected %>
-                 "Correct Answer"
+                 <h6 style="color:green">Correct Answer</h6>
              <% else %>
                 <%# # radio button with value "my_value" has not been selected %>
-                 "Wrong Answer"
+                 <h6 style="color:red">Wrong Answer</h6>
               <%end%></li>
           </ul> 
        <%end%>
-       <%= link_to "Hide options", questions_path(question) %>
+       <%= link_to "Hide options", questions_path(question), class: "btn btn-warning" %>
       
     </div>
   </div>
