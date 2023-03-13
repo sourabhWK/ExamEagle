@@ -1,0 +1,45 @@
+<h1 style="text-align:center;color:white;background-color:red">Edit Question Detail</h1>
+
+<%= form_with model: @question do |f| %>
+  <div class="container-sm">
+  
+    <div class="container d-flex me-5">
+
+      <div class="column mb-3 mt-2">
+        <strong><%= f.label :select_language_of_question %></strong>
+        <%= f.select :language_id, Language.pluck(:name, :id), {}, {data: {controller: 'slim'}}  %>
+      </div>
+
+      <div class="column mb-3 mt-2">
+        <strong><%= f.label :select_topic_of_question %></strong>
+        <%= f.select :topic_id, Topic.pluck(:name, :id)  %>
+
+      </div>
+
+      <div class="column mb-3 mt-2">
+        <strong><%= f.label :select_difficulty_level %></strong>
+        <%= f.select :difficulty, TestQuestion.difficulties.keys.to_a %>
+
+      </div>
+
+      <div class="column mb-3 mt-2">
+        <strong><%= f.label :select_question_type %></strong>
+        <%= f.select :question_type, TestQuestion.question_types.keys.to_a %>
+
+      </div>
+
+    </div>
+
+    <div class="row mb-3 mt-5">
+      <strong><%= f.label :enter_question %></strong>
+      <%= f.text_field :text, placeholder: "Enter Question", autofocus: true %>
+    </div>
+
+    <%# <div class="class">
+      <%= link_to "Add Answer", new_question_answer_path %>
+    <%# </div> %> 
+
+    <%= f.submit "submit", class:"btn btn-success mt-3" %>
+  </div>
+
+<%end%>

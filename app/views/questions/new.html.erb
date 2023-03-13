@@ -5,31 +5,34 @@
   
     <div class="container d-flex me-5">
 
-      <div class="form-group me-5">
-        <strong><%= f.label :question_level %></strong>
-        <%= f.select :q_level, options_for_select([["easy", "easy"], ["medium", "medium"], ["hard", "hard"]]) %>
+      <div class="column mb-3 mt-2">
+        <strong><%= f.label :select_language_of_question %></strong>
+        <%= f.select :language_id, Language.pluck(:name, :id), {}, {data: {controller: 'slim'}}  %>
       </div>
 
-      <div class="form-group me-5">
-        <strong><%= f.label :question_type %></strong>
-        <%= f.select :q_type, options_for_select([["MCQ", "MCQ"], ["SATQ", "SATQ"], ["LATQ", "LATQ"]]) %>
+      <div class="column mb-3 mt-2">
+        <strong><%= f.label :select_topic_of_question %></strong>
+        <%= f.select :topic_id, Topic.pluck(:name, :id)  %>
+
       </div>
 
-      <div class="form-group me-5">
-        <strong><%= f.label :choose_language %></strong>
-        <%= f.select :language, options_for_select([["C", "C"], ["C++", "C++"], ["Java", "Java"]]) %>
+      <div class="column mb-3 mt-2">
+        <strong><%= f.label :select_difficulty_level %></strong>
+        <%= f.select :difficulty, TestQuestion.difficulties.keys.to_a %>
+
       </div>
 
-      <div class="form-group me-5">
-        <strong><%= f.label :choose_topic %></strong>
-        <%= f.select :topic, options_for_select([["C", "C"], ["C++", "C++"], ["Java", "Java"]]) %>
+      <div class="column mb-3 mt-2">
+        <strong><%= f.label :select_question_type %></strong>
+        <%= f.select :question_type, TestQuestion.question_types.keys.to_a %>
+
       </div>
 
     </div>
 
     <div class="row mb-3 mt-5">
       <strong><%= f.label :enter_question %></strong>
-      <%= f.text_field :quest, placeholder: "Enter Question", autofocus: true %>
+      <%= f.text_field :text, placeholder: "Enter Question", autofocus: true %>
     </div>
 
     <%# <div class="class">
