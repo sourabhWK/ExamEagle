@@ -3,15 +3,13 @@
   <div class="card m-2 " style="width: 80rem;">
     <div class="card-body ">
     
-      <%= form_with model: @test_question do |f| %>
+      <%= form_with model: @test_question, data: {controller: 'nested-form',nested_form_wrapper_selector_value: '.nested-form-wrapper'} do |f| %>
         <div class="container-sm">
 
           <div class="row mb-3 mt-2">
             <strong><%= f.label :enter_description %></strong>
             <%= f.text_field :description, placeholder: "Enter description", autofocus: true, class: "form-control" %>
           </div>
-
-         
 
             <div class="column mb-3 mt-2">
               <strong><%= f.label :select_language_of_question %></strong>
@@ -85,6 +83,34 @@
               <%= f.file_field :image %>
             </div>
 
+            <%# <div class="container">
+              <h2 style="color:blue;text-align:center">All Questions</h2><hr>
+              <%= link_to_add_nested(f, :question_bodies, '#question_bodies') do %>
+                <%# <span><span>Add Question</span></span>
+              <%end%>
+              <%# <div id="question_bodies">
+                <%= f.fields_for :question_bodies do |question_body| %>
+                  <%# <%= render 'question_body_fields', f: question_body %>
+                <%# <% end %>
+                
+              <%# </div> %> 
+
+              <%# <template data-nested-form-target="template">
+                <%= form_with model: @question_body, QuestionBody.new, child_index: 'NEW_RECORD' do |question_body| %>
+                  <%# <%= render "question_body_fields", f: question_body %>
+                <%# <% end %>
+              <%# </template>
+
+              <%= f.fields_for :question_bodies do |question_body| %>
+                <%# <%= render "question_body_fields", f: question_body %>
+              <%# <%end%>
+
+              <%# <div data-nested-form-target="target"></div>
+                <button type="button" data-action="nested-form#add">Add Question</button>
+              </div> %> 
+            
+            </div>
+          
           <%= f.submit "submit", class:"btn btn-success mt-3" %>
         </div>
 

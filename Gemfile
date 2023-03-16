@@ -76,3 +76,8 @@ gem 'bootstrap', '~> 5.2.2'
 
 gem "jquery-rails", "~> 4.5"
 gem 'turbo-rails'
+
+# gem "vanilla_nested", "~> 1.7"
+
+gem 'will_paginate', '~> 3.3'
+gem 'will_paginate-bootstrap'
