@@ -1,11 +1,10 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 //= require jquery
 //= require jquery_ujs
+//= require vanilla_nested
 import "@hotwired/turbo-rails"
 import "controllers"
-
-
-
+// import "vanilla-nested"
 
 $(document).ready(function() {
   $('#new_language').on('submit', function(event) {

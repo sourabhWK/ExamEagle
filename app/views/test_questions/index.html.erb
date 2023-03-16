@@ -10,9 +10,17 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title"><b>Description :-  </b><%= question.description %></h5><br>
-             
+             <div class="container d-flex me-2">
+             <div class="container">
               <strong><h5 class="card-title text-align:center">Test Details</h5></strong>
-              <table class="table">
+              </div>
+              <div class="container">
+                <% if current_user.role.eql? "admin" %>
+                  <span class="badge text-bg-success"><h6>Question Uploaded :- <%= question.question_bodies.count%>/<%= question.no_of_question %></h6></span>
+                <%end%>
+              </div>
+              </div>
+              <table class="table mt-2">
                 <thead>
                   <tr>
                     <th scope="col">S.No</th>
@@ -52,10 +60,11 @@
               </table>
               <%= link_to 'Take Me to Test', test_question_path(question), class: "btn btn-primary" %>
               <% if current_user.role.eql? "admin" %>
+                
                 <%= link_to 'Edit Test Detail', edit_test_question_path(question), class: "btn btn-warning" %>
                 <%= link_to "Delete Test", test_question_path(question), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } ,class: "btn btn-danger "%>
-              
-
+                <%= link_to "Add Question", new_test_question_question_body_path(question), class: "btn btn-info" %>
+                
               <% end %>
             </div>
           </div>

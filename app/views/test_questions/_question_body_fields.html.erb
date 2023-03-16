@@ -1,0 +1,21 @@
+<!-- Nested Form for f -->
+<%# <div class="question_body-fields">
+  <Strong><%= form.label :question_text, class: "mt-3" %></strong>
+  <%# <%= form.text_field :text, placeholder: "Enter Question", class: "mb-3 form-control" %>
+
+  <%# <%= link_to_remove_nested(form) do %>
+    <%# <span>
+      <span>Remove</span>
+    </span>
+  <%end%>
+
+<%# </div> %> 
+
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <%= f.label :question_text %>
+  <%= f.text_field :text %>
+
+  <button type="button" data-action="nested-form#remove">Remove Question</button>
+
+  <%= f.hidden_field :_destroy %>
+</div>

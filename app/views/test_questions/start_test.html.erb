@@ -1,0 +1,58 @@
+
+<h1 style="text-align:center;color:red">Test Questions</h1><hr>
+<div class="d-flex ms-2">
+  <div class="card " style="width: 120rem; height: 25rem; overflow: auto;">
+      <h5 style="text-align:center;">Total Questions</h5><hr>
+      
+      <div class="container ms-1">
+        <% @test_question.question_bodies.in_groups_of(4, false).each do |group| %>
+          <div class='row'>
+            <% group.each do |product| %>
+              <div class='col-md-3 '>
+                
+                
+                <div class="input-group mb-3 btn btn-outline-secondary btn-lg" ><%= product.id %></div> 
+                      
+
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+  <div class="container">
+  <% @all_question.each do |question| %>
+    <div class="card" style="width: 60rem;height: 20rem">
+      <h2 class="mt-3 ms-3"><%=question.id%>. 
+      <%=question.text%></h2>
+    </div>
+  <% end %>
+  </div>
+  <div class="container">
+    <div class="card me-3" style="width: 25rem;height: 10rem">
+        <h5 style="text-align:center;">My Profile</h5><hr>
+        <h6 style="text-align:center">Email :- <%= current_user.email%></h6>
+        <h6 style="text-align:center">Name :- <%= current_user.name%></h6>
+        
+    </div>
+    <div class="card me-3 mt-3" style="width: 25rem;">
+        <h5 style="text-align:center;">Guidelines For this Test</h5><hr>
+        <p class="ms-2">* Always allow your camera during test duration.</p>
+        <p class="ms-2">* There is no negative marking system.</p>
+        <p class="ms-2">* Each Question will carry equal marks.</p>
+        <p class="ms-2">* Try to attempt the all questions in alloted time.</p>
+        <p class="ms-2">* First read all questions then click on right option.</p>
+    </div>
+  </div>
+</div>
+
+  <div class="container">
+
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+      <label class="btn btn-outline ms-5 " style="text-align:center;" for="btnradio1">
+        <%= will_paginate @all_question, :page_links => false, previous_label: "Previous Question ", next_label: " Next Question" %>
+      </label>
+    </div>
+  </div>
+</div>

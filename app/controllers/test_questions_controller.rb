@@ -1,17 +1,21 @@
 class TestQuestionsController < ApplicationController
   before_action :authenticate_user!
+  require "will_paginate-bootstrap"
 
   def index
     @test_questions = TestQuestion.all
+    
     
   end
 
   def new
       @test_question = TestQuestion.new
+      
   end
 
   def show
     @test_question = TestQuestion.find(params[:id])
+    
   end
 
   def create 
@@ -51,13 +55,18 @@ class TestQuestionsController < ApplicationController
 
  def start_test
   @test_question = TestQuestion.find(params[:id])
+  @all_question = TestQuestion.find(params[:id]).question_bodies.paginate(page: params[:page], per_page: 1)
+  #@all_question = test_question.question_bodies
+ # @all_question = test_question.question_bodies.paginate(page: params[:page])
+  
  end
     
 
     private
   
     def question_params
-      params.require(:test_question).permit(:text,:image,:passing_marks,:no_of_question,:full_marks,:description,:question_type,:difficulty,:topic_id,:language_id)
+      params.require(:test_question).permit(:text,:image,:passing_marks,:no_of_question,:full_marks,:description,:question_type,:difficulty,:topic_id,
+                                          :language_id, question_bodies_attributes: [:id, :text, :_destroy])
                               
     end
   
