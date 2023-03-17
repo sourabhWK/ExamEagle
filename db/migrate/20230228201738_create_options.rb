@@ -3,10 +3,10 @@ class CreateOptions < ActiveRecord::Migration[7.0]
     create_table :options do |t|
       t.string :text
       t.boolean :correct
-      t.references :question, index: true
+      t.integer :question_id
 
       t.timestamps
     end
-    add_foreign_key :options, :questions
+    
   end
 end

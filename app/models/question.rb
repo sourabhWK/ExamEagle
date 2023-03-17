@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
 
-  has_many :options
+  has_many :options, as: :optionable
 
   belongs_to :language, dependent: :destroy
   belongs_to :topic, dependent: :destroy

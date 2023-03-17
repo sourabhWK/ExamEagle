@@ -21,9 +21,22 @@ class OptionsController < ApplicationController
     end
   end
 
+  def create_option_ajax
+    question_body = QuestionBody.find(params[:question_body_id])
+    @opt = question_body.options.create(answer_params)
+    if @opt.save
+      redirect_to start_test_path
+    else
+      render 'new'
+    end
+  end
+
   private
 
   def answer_params
     params.require(:option).permit(:text,:correct)
   end
+
+  
+
 end

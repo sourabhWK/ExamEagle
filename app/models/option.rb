@@ -1,4 +1,3 @@
 class Option < ApplicationRecord
-  belongs_to :question, dependent: :destroy
-  
+  belongs_to :optionable, polymorphic: true
 end

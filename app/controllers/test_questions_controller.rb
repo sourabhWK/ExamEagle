@@ -58,8 +58,11 @@ class TestQuestionsController < ApplicationController
   @all_question = TestQuestion.find(params[:id]).question_bodies.paginate(page: params[:page], per_page: 1)
   #@all_question = test_question.question_bodies
  # @all_question = test_question.question_bodies.paginate(page: params[:page])
-  
+  @question_body = QuestionBody.find(params[:id])
+  @opt=Option.all
  end
+
+ 
     
 
     private
