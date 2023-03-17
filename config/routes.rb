@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'user', to: 'user#index'
   resources :admin, only: [:index, :show]
-  devise_for :users
+  devise_for :users 
 
   root "home#index"
 
@@ -14,12 +14,17 @@ Rails.application.routes.draw do
   end
   get '/test_questions/:id/start_test', to: 'test_questions#start_test', as: 'start_test'
 
+
+
   resources :languages do
     post 'create_ajax', on: :collection
   end
 
   resources :question_bodies do
-    resources :options
+    resources :options 
   end
 
+  resources :options do 
+    post 'create_option_ajax', on: :collection
+  end
 end

@@ -27,6 +27,44 @@
       <%=question.text%></h2>
     </div>
   <% end %>
+
+  <%= link_to 'Add Option', create_option_ajax_options_path , class: "btn btn-warning", data: { bs_toggle: 'modal',
+                bs_target: '#newLanguageModal' }  %>
+
+  <div class="modal fade" id="newLanguageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Option</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= form_with model: @option, local: false do |f1| %>
+      
+             <div class="row mb-3 mt-2"> 
+              <strong><%= f1.label :enter_answer %></strong>
+               <%= f1.text_field :text, placeholder: "Enter new language", autofocus: true, class: "form-control" %>
+             </div>
+
+            <strong>Correct Answer</strong>
+            <div class="column mb-3">
+              <%= f1.label :true %>
+              <%= f1.radio_button :correct, 'true' %>    
+            </div>
+                  
+            <div class="column mb-3">
+              <%= f1.label :false %>
+              <%= f1.radio_button :correct,  'false'%>    
+            </div> 
+
+            <%= f1.button "Submit", class:"btn btn-success mt-3" %> 
+          <%end%>
+        </div> 
+        
+      </div>
+    </div>
+  </div> 
+
   </div>
   <div class="container">
     <div class="card me-3" style="width: 25rem;height: 10rem">
