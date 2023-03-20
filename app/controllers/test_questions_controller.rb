@@ -15,7 +15,7 @@ class TestQuestionsController < ApplicationController
 
   def show
     @test_question = TestQuestion.find(params[:id])
-    
+    # @test_question = TestQuestion.find(params[:test_question_id])
   end
 
   def create 
@@ -55,11 +55,13 @@ class TestQuestionsController < ApplicationController
 
  def start_test
   @test_question = TestQuestion.find(params[:id])
+  @body = @test_question.question_bodies
   @all_question = TestQuestion.find(params[:id]).question_bodies.paginate(page: params[:page], per_page: 1)
   #@all_question = test_question.question_bodies
  # @all_question = test_question.question_bodies.paginate(page: params[:page])
   @question_body = QuestionBody.find(params[:id])
-  @opt=Option.all
+  @opt=@question_body.options
+  
  end
 
  

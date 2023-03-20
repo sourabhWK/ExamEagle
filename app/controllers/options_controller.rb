@@ -1,33 +1,25 @@
 class OptionsController < ApplicationController
 
   def new
-    @question = Question.find(params[:question_id])
+    @optionable = find_optionable
   end
 
   def index
     @questions = Question.all
-    @q=Question.find(params[:question_id])
-    @options=@q.options
-  end
-
-  def create
-    question = Question.find(params[:question_id])
-    @option = question.options.create(answer_params)
-    
-    if @option.save
-      redirect_to questions_path
-    else
-      render 'new'
+    if params[:question_id]
+      @q=Question.find(params[:question_id])
+      @options=@q.options
     end
   end
 
-  def create_option_ajax
-    question_body = QuestionBody.find(params[:question_body_id])
-    @opt = question_body.options.create(answer_params)
-    if @opt.save
-      redirect_to start_test_path
+  def create
+    @optionable = find_optionable
+    @option = @optionable.options.create(answer_params)
+    # debugger
+    if @option.save
+      redirect_to test_questions_path
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -37,6 +29,12 @@ class OptionsController < ApplicationController
     params.require(:option).permit(:text,:correct)
   end
 
-  
+  def find_optionable
+    if params[:question_body_id]
+      QuestionBody.find(params[:question_body_id])
+    elsif params[:question_id]
+      Question.find(params[:question_id])
+    end
+  end
 
 end
