@@ -16,15 +16,13 @@ Rails.application.routes.draw do
 
 
 
-  resources :languages do
-    post 'create_ajax', on: :collection
-  end
+  # resources :languages do
+  #   post 'create_ajax', on: :collection
+  # end
 
   resources :question_bodies do
     resources :options 
   end
 
-  resources :options do 
-    post 'create_option_ajax', on: :collection
-  end
+  
 end
