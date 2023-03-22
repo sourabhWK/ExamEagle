@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'user', to: 'user#index'
   resources :admin, only: [:index, :show]
   devise_for :users 
+ 
 
   root "home#index"
 
@@ -22,6 +23,10 @@ Rails.application.routes.draw do
 
   resources :question_bodies do
     resources :options 
+  end
+
+  resources :results do
+    post 'submit_option', on: :collection
   end
 
   

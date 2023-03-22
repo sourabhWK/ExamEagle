@@ -1,47 +1,76 @@
 
 <h1 style="text-align:center;color:red">Test Questions</h1><hr>
 <div class="d-flex ms-2">
-  <div class="card " style="width: 120rem; height: 25rem; overflow: auto;">
-      <h5 style="text-align:center;">Total Questions</h5><hr>
-      
-      <div class="container ms-1">
-        <% @test_question.question_bodies.in_groups_of(4, false).each do |group| %>
-          <div class='row'>
-            <% group.each do |product| %>
-              <div class='col-md-3 '>               
-                <div class="input-group mb-3 btn btn-outline-secondary btn-lg" ><%= product.id %></div> 
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-  </div>
-  <div class="container">
-  <% @all_question.each do |question| %>
-    <div class="card" style="width: 60rem;">
-      <h2 class="mt-3 ms-3"><%=question.id%>. 
-      <%=question.text%></h2>
+  
     
-    <% question.options.in_groups_of(4, false).each do |g| %>
-    <% g.each do |p| %>
-    <div class="row">
-      <div class='col-md-12 '>
-        <h4 class="mt-3 ms-4"><%=  radio_button 'option', 'ans', p.text %> <%=p.text%></h4>
-      </div>
+  
+    <div class="card " style="width: 120rem; height: 25rem; overflow: auto;">
+        <h5 style="text-align:center;">Total Questions</h5><hr>
+        
+        <div class="container ms-1">
+          <% @test_question.question_bodies.in_groups_of(4, false).each do |group| %>
+            <div class='row'>
+              <% group.each do |product| %>
+                <div class='col-md-3 '>               
+                  <div class="input-group mb-3 btn btn-outline-secondary btn-lg" ><%= product.id %></div> 
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
     </div>
-    <% end %>
+  
+  <div class="container">
+  <%= form_tag submit_option_results_path do %>
+    <% @all_question.each do |question| %>
+  <%= hidden_field_tag :question_body_id, question.id %>
+      <div class="card" style="width: 60rem;">
+        <h2 class="mt-3 ms-3"><%=question.id  %>.
+        <%=question.text %></h2>
       
-    <%end%>
-    </div>
-    <%= link_to "Add Option for #{question.id}", new_question_body_option_path(question) , class: "btn btn-warning" %>
 
-  <% end %>
+
+        <% question.options.in_groups_of(4, false).each do |g| %>
+          <% g.each do |p| %>
+            <div class="row">
+              <div class='col-md-12 '>
+                <%# <h4 class="mt-3 ms-4"><%=  radio_button 'option', 'ans', p.text %> <%#=p.text</h4>  %>
+                  <label>
+                   <h4 class="mt-3 ms-4">
+                   
+
+                    <%= radio_button_tag :option_id, p.id, checked: true %>
+                    <%= p.text%></h4> 
+                  </label>
+
+              <%# <% end %> 
+              </div>
+            </div>
+          <% end %>
+          
+        <%end%>
+        <%= submit_tag "Submit", class: "btn btn-success" %>
+        <%# <%= link_to "submit Answer", submit_option_results_path, class: "btn btn-success"%> 
+        
+      </div>
+      
+      <%= link_to "Add Option for #{question.id}", new_question_body_option_path(question) , class: "btn btn-warning" %>
+      <%# <%= link_to "Save Answer",submit_option_results_path(question), class: "btn btn-success"%> 
+      
+    <% end %>
+    
+  <%# <%end%> 
+  <%end %>
+  
+  
   </div>
+  
   <div class="container">
     <div class="card me-3" style="width: 25rem;height: 10rem">
         <h5 style="text-align:center;">My Profile</h5><hr>
         <h6 style="text-align:center">Email :- <%= current_user.email%></h6>
         <h6 style="text-align:center">Name :- <%= current_user.name%></h6>
+        <%= link_to "Finish Test",root_path , data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger"%>
         
     </div>
     <div class="card me-3 mt-3" style="width: 25rem;">
@@ -51,17 +80,21 @@
         <p class="ms-2">* Each Question will carry equal marks.</p>
         <p class="ms-2">* Try to attempt the all questions in alloted time.</p>
         <p class="ms-2">* First read all questions then click on right option.</p>
+        <p class="ms-2">* You can navigate from one question to another question.</p>
+        <p class="ms-2">* After selecting option you must click submit option.</p>
+        <p class="ms-2">* You have to use submit one time for particular question.</p>
+        <p class="ms-2">* You are not allowed to edit option after clicked on submit button.</p>
     </div>
   </div>
 </div>
 
-  <div class="container">
-
-    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-      <label class="btn btn-outline ms-5 " style="text-align:center;" for="btnradio1">
-        <%= will_paginate @all_question, :page_links => false, previous_label: "Previous Question ", next_label: " Next Question" %>
-      </label>
-    </div>
+   <div class=" container" style="text-align:center;">
+        <h3> <%= will_paginate @all_question, :page_links => false, previous_label: "Previous Question ", next_label: " Next Question" %></h3>
   </div>
+
 </div>
+
+
+ 
+
+
